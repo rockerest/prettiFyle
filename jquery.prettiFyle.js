@@ -7,8 +7,8 @@
                 var $this   = $(this),
                     data    = $this.data("slideEverything"),
                     wrap    = $( "<div></div>" ),
-                    newIn   = $( "<input type="text" />" ),
-                    newBu   = $( "<button type="button"></button>" );
+                    newIn   = $( "<input type=\"text\" />" ),
+                    newBu   = $( "<button type=\"button\"></button>" );
 
                 //set defaults
                 if ( !data ){
