@@ -5,27 +5,30 @@
         init : function( options ){
             return this.each(function() {
                 var $this   = $(this),
-                    data    = $this.data('slideEverything'),
-                    wrap    = $( '<div></div>' ),
-                    newIn   = $( '<input type="text" />' ),
-                    newBu   = $( '<button type="button"></button>' );
+                    data    = $this.data("slideEverything"),
+                    wrap    = $( "<div></div>" ),
+                    newIn   = $( "<input type="text" />" ),
+                    newBu   = $( "<button type="button"></button>" );
 
                 //set defaults
                 if ( !data ){
-                    $(this).data('prettiFyle', {
-                        'pre' : 'PF_',
-                        'text' : 'Browse...'
+                    $(this).data("prettiFyle", {
+                        "pre" : "PF_",
+                        "style" : "prettiFyle",
+                        "text" : "Browse..."
                     });
                 }
 
                 //extend data with options object
-                data = $.extend($this.data('prettiFyle'), options);
-                $this.data('prettiFyle', data);
+                data = $.extend($this.data("prettiFyle"), options);
+                $this.data("prettiFyle", data);
 
-                $this.css({
-                    visibility: 'hidden',
-                    position: 'absolute'
-                });
+                $this
+                    .addClass( data.style + "-original" )
+                    .css({
+                        "visibility": "hidden",
+                        "position": "absolute"
+                    })
 
                 // insert the new input wrapper
                 wrap.hide();
@@ -34,18 +37,22 @@
                     .append( $this )
                     .append(
                         newIn
-                            .prop( 'id', data.pre + $this.attr( 'id' ) )
+                            .prop( "id", data.pre + $this.attr( "id" ) )
+                            .addClass( data.style + "-input" )
                             .css({
-                                marginRight: ".5em"
+                                "marginRight": ".5em"
                             })
                     )
                     .append(
-                        newBu.html( data.text )
-                    );
+                        newBu
+                            .html( data.text )
+                            .addClass( data.style + "-button" )
+                    )
+                    .addClass( data.style + "-wrapper" );
 
                 // bind click transferrers
                 $( newIn ).add( newBu )
-                    .on( 'click', function( e ){
+                    .on( "click", function( e ){
                         e.stopPropagation();
                         $this.click();
                         return false;
@@ -63,18 +70,18 @@
         destroy : function(){
             return this.each(function() {
                 var $this = $(this),
-                data = $this.data('prettiFyle');
+                data = $this.data("prettiFyle");
 
-                $(window).unbind('.prettiFyle');
+                $(window).unbind(".prettiFyle");
                 data.prettiFyle.remove();
-                $this.removeData('prettiFyle');
+                $this.removeData("prettiFyle");
             });
         },
 
         debug : function(){
             return this.each(function() {
                 var $this = $(this),
-                data = $this.data('prettiFyle');
+                data = $this.data("prettiFyle");
 
                 console.log(data);
             });
@@ -85,11 +92,11 @@
         if ( methods[method] ){
             return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
         }
-        else if ( typeof method === 'object' || ! method ){
+        else if ( typeof method === "object" || ! method ){
             return methods.init.apply( this, arguments );
         }
         else{
-            $.error( 'Method ' + method + ' does not exist on jQuery.prettiFyle' );
+            $.error( "Method " + method + " does not exist on jQuery.prettiFyle" );
         }
     };
 })( jQuery );
