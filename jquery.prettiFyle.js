@@ -47,9 +47,6 @@
                         newIn
                             .prop( "id", data.pre + id )
                             .addClass( data.style + "-input" )
-                            .css({
-                                "marginRight": ".5em"
-                            })
                     )
                     .append(
                         newBu
