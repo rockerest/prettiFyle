@@ -39,7 +39,7 @@
           <a href="https://github.com/rockerest/prettiFyle" id="view-on-github" class="bigbutton"><span>View on GitHub</span></a>
         </section>
 
-        <hr>
+        <hr />
 
         <section id="main_content">
           Regular File Input:
@@ -49,6 +49,26 @@
           PrettiFyled Input:
           <br />
           <input type="file" id="styled" />
+
+          <hr />
+
+          <p>
+            Stylable file inputs with just:
+          </p>
+
+          <pre>
+            <code>
+              &lt;script src="javascripts/jquery.prettiFyle.js"></script>
+              &lt;script type="text/javascript">
+                $(function(){
+                  $( "#styled" ).prettiFyle();
+
+                  $( ".prettiFyle-button" )
+                    .addClass( "positive pill" );
+                });
+              &lt;/script>
+            </code>
+          </pre>
         </section>
 
         <footer>
