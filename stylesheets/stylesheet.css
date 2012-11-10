@@ -322,6 +322,11 @@ footer a:hover {
   color: #444;
 }
 
+.code, .result{
+  width: 50%;
+  float: left;
+}
+
 /* MISC */
 .clearfix:after {
   clear: both;
