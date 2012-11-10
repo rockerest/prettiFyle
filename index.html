@@ -42,51 +42,55 @@
         <hr />
 
         <section id="main_content">
-          <p>
-            Regular HTML is all that's necessary:
-          </p>
-
-          <pre>
-            <code>
+          <div class="step">
+            <div class="describe">
+              <p>
+                Regular HTML is all that's necessary:
+              </p>
+            </div>
+            <div class="code">
+              <pre>
+                <code>
 &lt;input type="file" id="styled" />
-            </code>
-          </pre>
+                </code>
+              </pre>
+            </div>
+            <div class="result">
+              <input type="file" id="unstyled" />
+            </div>
+          </div>
+            <p>
+              PrettiFyle inputs with just:
+            </p>
 
-          Regular File Input:
-          <br />
-          <input type="file" id="unstyled" />
+            <pre>
+              <code>
+  &lt;script src="javascripts/jquery.prettiFyle.js"></script>
+  &lt;script type="text/javascript">
+    $(function(){
+      $( "#styled" ).prettiFyle();
+    });
+  &lt;/script>
+              </code>
+            </pre>
 
-          <p>
-            PrettiFyle inputs with just:
-          </p>
+            <input type="file" id="styled" />
 
-          <pre>
-            <code>
-&lt;script src="javascripts/jquery.prettiFyle.js"></script>
-&lt;script type="text/javascript">
-  $(function(){
-    $( "#styled" ).prettiFyle();
-  });
-&lt;/script>
-            </code>
-          </pre>
+            <p>
+              Then you can style the input and the button (<a href="https://github.com/michenriksen/css3buttons">CSS3Buttons used here</a>):
+            </p>
 
-          <input type="file" id="styled" />
-
-          <p>
-            Then you can style the input and the button (<a href="https://github.com/michenriksen/css3buttons">CSS3Buttons used here</a>):
-          </p>
-
-          <pre>
-            <code>
-&lt;script type="text/javascript">
-  $(function(){
-    $( ".prettiFyle-button" )
-          .addClass( "positive pill" );
-  });
-&lt;/script>
-            </code>
-          </pre>
+            <pre>
+              <code>
+  &lt;script type="text/javascript">
+    $(function(){
+      $( ".prettiFyle-button" )
+            .addClass( "positive pill" );
+    });
+  &lt;/script>
+              </code>
+            </pre>
+          </div>
 
         </section>
 
