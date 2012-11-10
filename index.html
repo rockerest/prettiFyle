@@ -62,21 +62,36 @@
 &lt;script type="text/javascript">
   $(function(){
     $( "#styled" ).prettiFyle();
-
-    $( ".prettiFyle-button" )
-      .addClass( "positive pill" );
   });
 &lt;/script>
             </code>
           </pre>
+
           <p>
             Regular HTML is all that's necessary:
           </p>
+
           <pre>
             <code>
 &lt;input type="file" id="styled" />
             </code>
           </pre>
+
+          <p>
+            Then you can style the input and the button (<a href="https://github.com/michenriksen/css3buttons">CSS3Buttons used here</a>):
+          </p>
+
+          <pre>
+            <code>
+&lt;script type="text/javascript">
+  $(function(){
+    $( ".prettiFyle-button" )
+          .addClass( "positive pill" );
+  });
+&lt;/script>
+            </code>
+          </pre>
+
         </section>
 
         <footer>
