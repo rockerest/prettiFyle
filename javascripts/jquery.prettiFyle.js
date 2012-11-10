@@ -5,13 +5,13 @@
         init : function( options ){
             return this.each(function() {
                 var $this   = $(this),
-            		parent	= $this.parent(),
-                	id		= $this.attr( "id" ),
+                    parent  = $this.parent(),
+                    id      = $this.attr( "id" ),
                     data    = $this.data("slideEverything"),
                     wrap    = $( "<div></div>" ),
                     newIn   = $( "<input type=\"text\" />" ),
                     newBu   = $( "<button type=\"button\"></button>" ),
-                    iFrame	= $( "<iframe></iframe>" );
+                    iFrame  = $( "<iframe></iframe>" );
 
                 //set defaults
                 if ( !data ){
@@ -20,9 +20,9 @@
                         "style" : "prettiFyle",
                         "text" : "Browse...",
                         "ajax" : {
-                        	"active" : false,
-                        	"action" : undefined,
-                        	"callback" : undefined
+                            "active" : false,
+                            "action" : undefined,
+                            "callback" : undefined
                         }
                     });
                 }
@@ -47,9 +47,6 @@
                         newIn
                             .prop( "id", data.pre + id )
                             .addClass( data.style + "-input" )
-                            .css({
-                                "marginRight": ".5em"
-                            })
                     )
                     .append(
                         newBu
@@ -59,17 +56,23 @@
                     .addClass( data.style + "-wrapper" );
 
                 if( data.ajax.active ){
-	                // Assign the callback ino the global namespace so we can use it from the iframe
-                	wrap
-                		.append(
-                			iFrame
-                				.prop( "name", id + "-target-iFrame" )
-                				.hide()
-                		);
-                	$this
-                		.closest( "form" )
-                			.prop( "target", id + "-target-iFrame" )
-                			.prop( "action", data.ajax.action);
+                    // Assign the callback ino the global namespace so we can use it from the iframe
+                    (function( PrettiFyle, callback, undefined ){
+                        PrettiFyle.callback = callback;
+
+                        window.PrettiFyle = PrettiFyle;
+                    }( window.PrettiFyle = window.PrettiFyle || {}, data.ajax.callback ));
+
+                    wrap
+                        .append(
+                            iFrame
+                                .prop( "name", id + "-target-iFrame" )
+                                .hide()
+                        );
+                    $this
+                        .closest( "form" )
+                            .prop( "target", id + "-target-iFrame" )
+                            .prop( "action", data.ajax.action);
                 }
 
                 // bind click transferrers
@@ -82,11 +85,11 @@
 
                 // bind change on the iframe to catch returned data
                 parent.on( "change", function( e ){
-                	if( $( e.target ).prop( 'id' ) == id + "-target-iFrame" ){
-	                	var data = $( e.target ).find( "body" ).text();
-	                	console.log( data );
-	                	data.ajax.callback( data );
-	                }
+                    if( $( e.target ).prop( 'id' ) == id + "-target-iFrame" ){
+                        var data = $( e.target ).find( "body" ).text();
+                        console.log( data );
+                        window.prettiFyle.callback( data );
+                    }
                 })
 
                 $this.change( function(){
